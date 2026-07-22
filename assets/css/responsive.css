@@ -1,0 +1,1060 @@
+/* ============================
+   RESPONSIVE STYLES
+   ============================ */
+
+/* ============================
+   LARGE TABLETS & DESKTOPS
+   ============================ */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .report-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-grid .full-width {
+        grid-column: 1;
+    }
+
+    .guest-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================
+   TABLETS & SMALL DESKTOPS
+   ============================ */
+@media (max-width: 992px) {
+    /* Sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Sidebar overlay */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* Header */
+    .menu-toggle {
+        display: block;
+    }
+
+    .top-header {
+        padding: 12px 20px;
+    }
+
+    .header-search {
+        max-width: 240px;
+    }
+
+    /* Page Content */
+    .page-content {
+        padding: 16px 20px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+
+    /* Cards */
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .card-select {
+        width: 100%;
+    }
+
+    /* Filters */
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .view-toggle {
+        align-self: flex-start;
+    }
+
+    /* Tables - Horizontal Scroll */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .booking-table,
+    .transaction-table {
+        min-width: 700px;
+    }
+
+    /* Calendar */
+    .calendar-day {
+        min-height: 80px;
+        padding: 6px;
+    }
+
+    .calendar-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .calendar-actions h2 {
+        min-width: 140px;
+        font-size: 18px;
+        order: 3;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Reports */
+    .report-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .report-filters .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .report-filters .filter-group .form-input {
+        width: 100%;
+    }
+
+    .report-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .report-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Settings */
+    .settings-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .settings-tabs .tab-btn {
+        white-space: nowrap;
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    /* Modal */
+    .modal-content {
+        max-width: 90%;
+        margin: 20px;
+    }
+
+    /* Charts */
+    .chart-container {
+        height: 250px;
+    }
+}
+
+/* ============================
+   MOBILE DEVICES
+   ============================ */
+@media (max-width: 768px) {
+    /* Header */
+    .top-header {
+        padding: 10px 16px;
+    }
+
+    .header-search {
+        max-width: 160px;
+        padding: 6px 12px;
+    }
+
+    .header-search i {
+        font-size: 14px;
+    }
+
+    .header-search input {
+        font-size: 13px;
+    }
+
+    .header-search input::placeholder {
+        font-size: 12px;
+    }
+
+    .user-profile span {
+        display: none;
+    }
+
+    .notification-btn {
+        font-size: 18px;
+    }
+
+    .notification-badge {
+        font-size: 9px;
+        min-width: 16px;
+        padding: 1px 5px;
+    }
+
+    .user-profile img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Page Content */
+    .page-content {
+        padding: 12px 16px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+    }
+
+    .page-header p {
+        font-size: 13px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-number {
+        font-size: 22px;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    /* Cards */
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        padding: 16px 18px;
+    }
+
+    .card-header h3 {
+        font-size: 15px;
+    }
+
+    .card-body {
+        padding: 16px 18px;
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+        padding: 8px 18px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-sm {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    /* Forms */
+    .form-group {
+        padding: 0 16px;
+        margin-bottom: 14px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-input {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Rooms */
+    .rooms-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+    }
+
+    .room-card {
+        border-radius: 10px;
+    }
+
+    .room-image {
+        height: 150px;
+    }
+
+    .room-details {
+        padding: 14px 16px 16px;
+    }
+
+    .room-details h3 {
+        font-size: 16px;
+    }
+
+    .room-price {
+        font-size: 18px;
+    }
+
+    .room-actions {
+        flex-direction: column;
+    }
+
+    .room-actions button {
+        padding: 6px;
+        font-size: 13px;
+    }
+
+    /* Bookings */
+    .booking-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .booking-tabs .tab-btn {
+        font-size: 13px;
+        padding: 6px 14px;
+        white-space: nowrap;
+    }
+
+    .booking-table {
+        min-width: 600px;
+    }
+
+    .booking-table th,
+    .booking-table td {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    /* Guests */
+    .guest-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .stat-item {
+        padding: 12px 16px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    .guests-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+    }
+
+    .guest-card {
+        padding: 16px;
+    }
+
+    .guest-avatar {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+
+    /* Calendar */
+    .calendar-container {
+        padding: 16px;
+    }
+
+    .calendar-weekdays div {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .calendar-day {
+        min-height: 60px;
+        padding: 4px;
+    }
+
+    .day-number {
+        font-size: 12px;
+    }
+
+    .day-event {
+        font-size: 9px;
+        padding: 1px 4px;
+    }
+
+    .calendar-actions h2 {
+        font-size: 16px;
+        min-width: 120px;
+    }
+
+    /* Reports */
+    .report-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .summary-card {
+        padding: 16px;
+    }
+
+    .summary-value {
+        font-size: 18px;
+    }
+
+    .summary-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .performance-metrics {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .metric {
+        padding: 10px;
+    }
+
+    .metric-value {
+        font-size: 18px;
+    }
+
+    .transaction-table {
+        min-width: 500px;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .chart-container {
+        height: 200px;
+    }
+
+    /* Settings */
+    .settings-panel .card-body {
+        padding: 16px;
+    }
+
+    .room-type-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 16px;
+    }
+
+    .room-type-actions {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+
+    .room-type-actions button {
+        flex: 1;
+    }
+
+    .notification-setting {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .toggle-switch {
+        align-self: flex-start;
+    }
+
+    /* Modal */
+    .modal-content {
+        max-width: 95%;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        padding: 16px 18px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .modal-close {
+        font-size: 24px;
+    }
+
+    /* Toast */
+    .toast-notification {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        max-width: none;
+        padding: 12px 16px;
+        border-radius: 8px;
+    }
+
+    .toast-message {
+        font-size: 13px;
+    }
+
+    .toast-icon {
+        font-size: 20px;
+    }
+}
+
+/* ============================
+   SMALL MOBILE DEVICES
+   ============================ */
+@media (max-width: 480px) {
+    /* Header */
+    .top-header {
+        padding: 8px 12px;
+    }
+
+    .header-search {
+        max-width: 120px;
+        padding: 4px 10px;
+    }
+
+    .header-search i {
+        font-size: 12px;
+        margin-right: 6px;
+    }
+
+    .header-search input {
+        font-size: 12px;
+    }
+
+    .header-search input::placeholder {
+        font-size: 11px;
+    }
+
+    .user-profile img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .notification-btn {
+        font-size: 16px;
+    }
+
+    .notification-badge {
+        font-size: 8px;
+        min-width: 14px;
+        padding: 1px 4px;
+    }
+
+    /* Page Content */
+    .page-content {
+        padding: 8px 12px;
+    }
+
+    .page-header h1 {
+        font-size: 18px;
+    }
+
+    .page-header p {
+        font-size: 12px;
+    }
+
+    /* Stats */
+    .stat-card {
+        padding: 12px 16px;
+    }
+
+    .stat-number {
+        font-size: 20px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .stat-info h3 {
+        font-size: 13px;
+    }
+
+    .stat-change {
+        font-size: 11px;
+    }
+
+    /* Cards */
+    .card-header {
+        padding: 12px 14px;
+    }
+
+    .card-header h3 {
+        font-size: 14px;
+    }
+
+    .card-body {
+        padding: 12px 14px;
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    /* Rooms */
+    .rooms-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .room-image {
+        height: 130px;
+    }
+
+    .room-details h3 {
+        font-size: 15px;
+    }
+
+    .room-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .room-price {
+        font-size: 16px;
+    }
+
+    /* Guests */
+    .guest-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .guests-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Calendar */
+    .calendar-container {
+        padding: 12px;
+    }
+
+    .calendar-day {
+        min-height: 50px;
+        padding: 2px;
+    }
+
+    .day-number {
+        font-size: 10px;
+    }
+
+    .day-event {
+        font-size: 8px;
+        padding: 1px 3px;
+        margin-bottom: 1px;
+    }
+
+    .calendar-weekdays div {
+        font-size: 10px;
+        padding: 4px;
+    }
+
+    .calendar-actions h2 {
+        font-size: 14px;
+        min-width: 100px;
+    }
+
+    .calendar-actions button {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    /* Reports */
+    .report-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 12px 14px;
+    }
+
+    .summary-value {
+        font-size: 16px;
+    }
+
+    .summary-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .performance-metrics {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .metric {
+        padding: 8px;
+    }
+
+    .metric-value {
+        font-size: 16px;
+    }
+
+    .transaction-table {
+        min-width: 400px;
+    }
+
+    .transaction-table th,
+    .transaction-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .chart-container {
+        height: 180px;
+    }
+
+    /* Bookings */
+    .booking-table {
+        min-width: 400px;
+    }
+
+    .booking-table th,
+    .booking-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .booking-tabs .tab-btn {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    /* Settings */
+    .settings-tabs .tab-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .room-type-item {
+        padding: 10px 12px;
+    }
+
+    .room-type-info h4 {
+        font-size: 14px;
+    }
+
+    .room-type-info p {
+        font-size: 12px;
+    }
+
+    /* Modal */
+    .modal-content {
+        margin: 5px;
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        padding: 12px 14px;
+    }
+
+    .modal-header h2 {
+        font-size: 16px;
+    }
+
+    .form-group {
+        padding: 0 12px;
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-input {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    /* Toast */
+    .toast-notification {
+        top: 8px;
+        right: 8px;
+        left: 8px;
+        padding: 10px 14px;
+        border-radius: 6px;
+    }
+
+    .toast-message {
+        font-size: 12px;
+    }
+
+    .toast-icon {
+        font-size: 18px;
+    }
+
+    .toast-close {
+        font-size: 20px;
+    }
+
+    /* Filters */
+    .filter-select {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .view-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    /* Tables - General */
+    .table-container {
+        border-radius: 8px;
+    }
+
+    /* Utilities */
+    .hide-mobile {
+        display: none !important;
+    }
+
+    .text-center-mobile {
+        text-align: center !important;
+    }
+
+    .w-full-mobile {
+        width: 100% !important;
+    }
+}
+
+/* ============================
+   PRINT STYLES
+   ============================ */
+@media print {
+    .sidebar,
+    .top-header,
+    .menu-toggle,
+    .header-actions,
+    .report-actions,
+    .report-filters .btn-primary,
+    .settings-tabs,
+    .modal,
+    .toast-notification {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+
+    .page-content {
+        padding: 20px !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .chart-container {
+        height: 300px !important;
+    }
+
+    .report-summary {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .stat-card,
+    .summary-card,
+    .guest-card,
+    .room-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+/* ============================
+   UTILITY CLASSES FOR RESPONSIVE
+   ============================ */
+/* Show/Hide */
+.hide-desktop {
+    display: none !important;
+}
+
+.hide-tablet {
+    display: none !important;
+}
+
+.hide-mobile {
+    display: none !important;
+}
+
+@media (max-width: 992px) {
+    .hide-desktop {
+        display: block !important;
+    }
+
+    .show-desktop {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hide-tablet {
+        display: block !important;
+    }
+
+    .show-tablet {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hide-mobile {
+        display: block !important;
+    }
+
+    .show-mobile {
+        display: none !important;
+    }
+}
+
+/* Text Alignment */
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+
+@media (max-width: 768px) {
+    .text-left-mobile { text-align: left !important; }
+    .text-center-mobile { text-align: center !important; }
+    .text-right-mobile { text-align: right !important; }
+}
+
+/* Width Utilities */
+.w-full { width: 100% !important; }
+.w-50 { width: 50% !important; }
+.w-33 { width: 33.333% !important; }
+.w-25 { width: 25% !important; }
+
+@media (max-width: 768px) {
+    .w-full-mobile { width: 100% !important; }
+    .w-50-mobile { width: 50% !important; }
+}
+
+/* Flex Utilities */
+.flex { display: flex !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.items-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-center { justify-content: center !important; }
+.gap-1 { gap: 4px !important; }
+.gap-2 { gap: 8px !important; }
+.gap-3 { gap: 12px !important; }
+.gap-4 { gap: 16px !important; }
+
+@media (max-width: 768px) {
+    .flex-col-mobile { flex-direction: column !important; }
+    .gap-2-mobile { gap: 8px !important; }
+}
+
+/* Spacing */
+.m-1 { margin: 4px !important; }
+.m-2 { margin: 8px !important; }
+.m-3 { margin: 12px !important; }
+.m-4 { margin: 16px !important; }
+
+.mt-1 { margin-top: 4px !important; }
+.mt-2 { margin-top: 8px !important; }
+.mt-3 { margin-top: 12px !important; }
+.mt-4 { margin-top: 16px !important; }
+
+.mb-1 { margin-bottom: 4px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-3 { margin-bottom: 12px !important; }
+.mb-4 { margin-bottom: 16px !important; }
+
+.p-1 { padding: 4px !important; }
+.p-2 { padding: 8px !important; }
+.p-3 { padding: 12px !important; }
+.p-4 { padding: 16px !important; }

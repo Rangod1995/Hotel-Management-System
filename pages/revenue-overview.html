@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel · Revenue Overview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f6fa;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 260px;
+            background: #1e293b;
+            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            transition: transform 0.2s;
+            z-index: 100;
+            padding: 24px 16px;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-brand i {
+            font-size: 28px;
+            color: #38bdf8;
+        }
+
+        .sidebar-brand span {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.3px;
+        }
+
+        .sidebar-brand span small {
+            font-weight: 400;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            flex: 1;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 6px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.15s;
+        }
+
+        .sidebar-menu a i {
+            width: 22px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu .active a {
+            background: #334155;
+            color: white;
+        }
+
+        .sidebar-menu .active a {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            margin-top: 8px;
+        }
+
+        .sidebar-footer a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .sidebar-footer a:hover {
+            background: #334155;
+            color: white;
+        }
+
+        /* ===== MAIN WRAPPER ===== */
+        .main-wrapper {
+            margin-left: 260px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: white;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e9edf2;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-left h2 {
+            font-weight: 600;
+            font-size: 20px;
+            color: #0f172a;
+        }
+
+        .header-left i {
+            font-size: 20px;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-right .notification {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .header-right .notification .badge {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 30px;
+        }
+
+        .header-avatar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-avatar img {
+            width: 38px;
+            height: 38px;
+            border-radius: 40px;
+            background: #2563eb;
+            object-fit: cover;
+        }
+
+        .header-avatar .name {
+            font-weight: 500;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        #menuToggle {
+            display: none;
+        }
+
+        /* ===== PAGE CONTENT ===== */
+        .page-content {
+            padding: 28px 32px;
+            flex: 1;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #edf2f7;
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-info h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .stat-number {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        /* Revenue Card */
+        .revenue-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #edf2f7;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .revenue-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .revenue-card .card-header h3 {
+            font-weight: 600;
+            font-size: 18px;
+            color: #0f172a;
+        }
+
+        .revenue-card .card-header select {
+            padding: 6px 14px;
+            border-radius: 40px;
+            border: 1px solid #d1d9e6;
+            background: white;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1e293b;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .revenue-card .card-header select:hover {
+            border-color: #2563eb;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* Recent Grid */
+        .recent-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #edf2f7;
+            padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .card .card-header h3 {
+            font-weight: 600;
+            font-size: 17px;
+            color: #0f172a;
+        }
+
+        .card .card-header a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card .card-header a:hover {
+            text-decoration: underline;
+        }
+
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .booking-item:last-child {
+            border-bottom: 0;
+        }
+
+        .booking-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .booking-info p {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .booking-status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        .booking-status.confirmed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .booking-status.pending {
+            background: #fef9c3;
+            color: #a16207;
+        }
+
+        .booking-status.checked-in {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .booking-status.cancelled {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .breakdown-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .breakdown-item .breakdown-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .breakdown-item .progress-bar {
+            height: 6px;
+            background: #e9edf2;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .breakdown-item .progress-bar .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .breakdown-total {
+            margin-top: 24px;
+            border-top: 1px solid #edf2f7;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .breakdown-total .total-label {
+            font-weight: 600;
+        }
+
+        .breakdown-total .total-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .breakdown-total .change-positive {
+            color: #10b981;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 24px;
+            padding: 20px 32px;
+            border-top: 1px solid #e9edf2;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #64748b;
+            background: white;
+        }
+
+        .footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 250px;
+            }
+            
+            .main-wrapper {
+                margin-left: 0;
+            }
+            
+            #menuToggle {
+                display: block !important;
+            }
+            
+            .recent-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .page-content {
+                padding: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            
+            .stat-card {
+                padding: 16px;
+            }
+            
+            .stat-number {
+                font-size: 20px;
+            }
+            
+            .revenue-card {
+                padding: 16px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                text-align: center;
+                padding: 16px 20px;
+            }
+            
+            .header-avatar .name {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-hotel"></i>
+            <span>Hotel<span style="color:#94a3b8; font-weight:400;">Manager</span></span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fas fa-bed"></i> Rooms</a></li>
+            <li><a href="#"><i class="fas fa-calendar-check"></i> Bookings</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Guests</a></li>
+            <li class="active"><a href="#"><i class="fas fa-dollar-sign"></i> Revenue</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <div class="header-left">
+                <i class="fas fa-bars" id="menuToggle"></i>
+                <h2>Revenue Overview</h2>
+            </div>
+            <div class="header-right">
+                <div class="notification">
+                    <i class="fas fa-bell" style="font-size: 20px; color:#1e293b;"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="header-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=2563eb&color=fff&size=38" alt="avatar">
+                    <span class="name">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== PAGE CONTENT ===== -->
+        <div class="page-content">
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:#E0E7FF; color:#4F46E5;">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Rooms</h3>
+                        <p class="stat-number">45</p>
+                        <span class="stat-change positive">+5% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:#D1FAE5; color:#10B981;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Occupied Rooms</h3>
+                        <p class="stat-number">32</p>
+                        <span class="stat-change positive">+12% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:#FEF3C7; color:#F59E0B;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Revenue</h3>
+                        <p class="stat-number">$48,290</p>
+                        <span class="stat-change positive">+8.2% from last month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:#FEE2E2; color:#EF4444;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Bookings</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-change negative">-2% from last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Chart -->
+            <div class="revenue-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line" style="margin-right: 10px; color:#2563eb;"></i>Revenue Overview</h3>
+                    <select id="revenueFilter">
+                        <option value="week">This Week</option>
+                        <option value="month" selected>This Month</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Bookings & Breakdown -->
+            <div class="recent-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Bookings</h3>
+                        <a href="#">View All</a>
+                    </div>
+                    <div class="booking-list">
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <h4>John Smith</h4>
+                                <p>Suite 401 • 2 nights</p>
+                            </div>
+                            <span class="booking-status confirmed">Confirmed</span>
+                        </div>
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Deluxe Room 205 • 3 nights</p>
+                            </div>
+                            <span class="booking-status pending">Pending</span>
+                        </div>
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <h4>Michael Brown</h4>
+                                <p>Standard Room 108 • 1 night</p>
+                            </div>
+                            <span class="booking-status checked-in">Checked In</span>
+                        </div>
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <h4>Emily Davis</h4>
+                                <p>Suite 402 • 4 nights</p>
+                            </div>
+                            <span class="booking-status cancelled">Cancelled</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Revenue Breakdown</h3>
+                        <span style="font-size:13px; color:#64748b;">last 30 days</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 6px;">
+                        <div class="breakdown-item">
+                            <div class="breakdown-header">
+                                <span>Room Sales</span>
+                                <span>$32,400</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width:68%; background:#2563eb;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-header">
+                                <span>F&B</span>
+                                <span>$8,920</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width:18%; background:#8b5cf6;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-header">
+                                <span>Services</span>
+                                <span>$4,110</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width:9%; background:#f59e0b;"></div>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-header">
+                                <span>Other</span>
+                                <span>$2,860</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width:6%; background:#ef4444;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breakdown-total">
+                        <span>Total <span class="total-label">$48,290</span></span>
+                        <span class="change-positive"><i class="fas fa-arrow-up"></i> +8.2%</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <span>© 2026 HotelManager. All rights reserved.</span>
+            <span>
+                <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Support</a>
+            </span>
+        </footer>
+
+    </div>
+
+    <!-- ===== LOAD CHART.JS FROM MULTIPLE CDN SOURCES ===== -->
+    <!-- Primary CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Fallback CDN if primary fails -->
+    <script>
+        if (typeof Chart === 'undefined') {
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"><\/script>');
+        }
+    </script>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Function to initialize chart
+        function initChart() {
+            try {
+                const canvas = document.getElementById('revenueChart');
+                if (!canvas) {
+                    console.error('Canvas element not found');
+                    return;
+                }
+
+                const ctx = canvas.getContext('2d');
+                
+                const revenueChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Revenue ($)',
+                            data: [4200, 5100, 4800, 6200, 5900, 7300, 6900],
+                            backgroundColor: [
+                                '#2563eb', '#3b82f6', '#60a5fa', 
+                                '#2563eb', '#3b82f6', '#60a5fa', 
+                                '#2563eb'
+                            ],
+                            borderRadius: 8,
+                            borderSkipped: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#e9edf2'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Chart filter functionality
+                const filterSelect = document.getElementById('revenueFilter');
+                if (filterSelect) {
+                    filterSelect.addEventListener('change', function() {
+                        const value = this.value;
+                        let newData = [];
+                        let newLabels = [];
+                        
+                        if (value === 'week') {
+                            newData = [4200, 5100, 4800, 6200, 5900, 7300, 6900];
+                            newLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                        } else if (value === 'month') {
+                            newData = [18500, 14200, 16800, 19300, 21000, 17800, 22500];
+                            newLabels = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7'];
+                        } else if (value === 'year') {
+                            newData = [48500, 52300, 49800, 56200, 58900, 62300, 65900];
+                            newLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+                        }
+                        
+                        revenueChart.data.labels = newLabels;
+                        revenueChart.data.datasets[0].data = newData;
+                        revenueChart.update();
+                    });
+                }
+
+                console.log('Revenue chart initialized successfully!');
+                return revenueChart;
+            } catch (error) {
+                console.error('Error initializing chart:', error);
+                return null;
+            }
+        }
+
+        // Initialize chart when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                // Small delay to ensure Chart.js is loaded
+                setTimeout(initChart, 100);
+            });
+        } else {
+            setTimeout(initChart, 100);
+        }
+
+        // Also try to initialize when window loads (backup)
+        window.addEventListener('load', function() {
+            // Check if chart was already initialized
+            if (typeof window.revenueChart === 'undefined') {
+                setTimeout(initChart, 50);
+            }
+        });
+
+        // Sidebar toggle for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (sidebar.style.transform === 'translateX(0px)' || sidebar.style.transform === '') {
+                        sidebar.style.transform = 'translateX(-100%)';
+                    } else {
+                        sidebar.style.transform = 'translateX(0)';
+                    }
+                });
+            }
+
+            // Close sidebar on outside click (mobile)
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 900) {
+                    if (sidebar && !sidebar.contains(e.target) && e.target !== menuToggle) {
+                        sidebar.style.transform = 'translateX(-100%)';
+                    }
+                }
+            });
+
+            // Reset sidebar position on resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900) {
+                    if (sidebar) {
+                        sidebar.style.transform = 'translateX(0)';
+                    }
+                }
+            });
+        });
+
+        console.log('Revenue Overview page loaded successfully!');
+    </script>
+
+</body>
+</html>

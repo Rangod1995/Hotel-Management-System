@@ -1,0 +1,178 @@
+<!-- guests.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guests - Hotel Management System</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/guests.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-shell">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-hotel"></i>
+            <span>HotelManager</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="rooms.html">
+                <i class="fas fa-bed"></i>
+                <span>Rooms</span>
+            </a>
+            <a href="bookings.html">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="guests.html" class="active">
+                <i class="fas fa-users"></i>
+                <span>Guests</span>
+            </a>
+            <a href="calendar.html">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Calendar</span>
+            </a>
+            <a href="reports.html">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            <a href="settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search guests...">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=4F46E5&color=fff" alt="User">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Guests Content -->
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>Guests</h1>
+                    <p>Manage guest information and history</p>
+                </div>
+                <button class="btn-primary" id="addGuestBtn">
+                    <i class="fas fa-plus"></i> Add Guest
+                </button>
+            </div>
+
+            <!-- Guest Stats -->
+            <div class="guest-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Guests</span>
+                    <span class="stat-value">1,284</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Active Guests</span>
+                    <span class="stat-value">89</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">New This Month</span>
+                    <span class="stat-value">156</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Returning Guests</span>
+                    <span class="stat-value">43%</span>
+                </div>
+            </div>
+
+            <!-- Guests Grid -->
+            <div class="guests-grid" id="guestsGrid">
+                <!-- Guests will be dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Guest Modal -->
+    <div class="modal" id="guestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Guest</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="guestForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-input" placeholder="First name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-input" placeholder="Last name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-input" placeholder="Email address" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" class="form-input" placeholder="Phone number" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-input" placeholder="Full address">
+                </div>
+                <div class="form-group">
+                    <label>ID Type</label>
+                    <select class="form-input">
+                        <option>Passport</option>
+                        <option>Driver's License</option>
+                        <option>National ID</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ID Number</label>
+                    <input type="text" class="form-input" placeholder="ID number">
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">
+                    <i class="fas fa-save"></i> Save Guest
+                </button>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/guests.js"></script>
+</body>
+</html>

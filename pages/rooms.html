@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms | Hotel Management System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/rooms.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo"><i class="fas fa-hotel"></i><span>HotelManager</span></div>
+  <nav>
+    <a href="dashboard.html"><i class="fas fa-chart-pie"></i>Dashboard</a>
+    <a class="active" href="rooms.html"><i class="fas fa-bed"></i>Rooms</a>
+    <a href="bookings.html"><i class="fas fa-calendar-check"></i>Bookings</a>
+    <a href="guests.html"><i class="fas fa-users"></i>Guests</a>
+    <a href="calendar.html"><i class="fas fa-calendar"></i>Calendar</a>
+    <a href="reports.html"><i class="fas fa-chart-line"></i>Reports</a>
+    <a href="settings.html"><i class="fas fa-cog"></i>Settings</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+<header class="topbar">
+<div>
+<h1>Rooms</h1>
+<p>Manage hotel rooms, availability and pricing.</p>
+</div>
+<div class="top-actions">
+<div class="search-box">
+<i class="fas fa-search"></i>
+<input id="searchRooms" placeholder="Search room...">
+</div>
+<button class="btn-primary"><i class="fas fa-plus"></i> Add Room</button>
+</div>
+</header>
+
+<section class="stats-grid">
+<div class="stat-card"><h3>120</h3><p>Total Rooms</p></div>
+<div class="stat-card"><h3>84</h3><p>Occupied</p></div>
+<div class="stat-card"><h3>30</h3><p>Available</p></div>
+<div class="stat-card"><h3>6</h3><p>Maintenance</p></div>
+</section>
+
+<section class="toolbar">
+<select><option>All Status</option></select>
+<select><option>All Types</option></select>
+<select><option>Sort by Number</option></select>
+</section>
+
+<section class="rooms-grid" id="roomsGrid">
+<article class="room-card">
+<div class="room-image"><i class="fas fa-bed"></i><span class="badge available">Available</span></div>
+<div class="room-body">
+<h2>Room 101</h2>
+<p class="type">Deluxe Suite</p>
+<div class="meta"><span><i class="fas fa-user"></i>2 Guests</span><span><i class="fas fa-wifi"></i>Wi‑Fi</span></div>
+<div class="price">$180 <small>/night</small></div>
+<div class="actions">
+<button class="btn-secondary">Details</button>
+<button class="btn-primary">Book</button>
+</div>
+</div>
+</article>
+
+<article class="room-card">
+<div class="room-image"><i class="fas fa-bed"></i><span class="badge occupied">Occupied</span></div>
+<div class="room-body">
+<h2>Room 205</h2>
+<p class="type">Executive</p>
+<div class="meta"><span><i class="fas fa-user"></i>3 Guests</span><span><i class="fas fa-tv"></i>Smart TV</span></div>
+<div class="price">$240 <small>/night</small></div>
+<div class="actions">
+<button class="btn-secondary">Details</button>
+<button class="btn-primary">Edit</button>
+</div>
+</div>
+</article>
+</section>
+
+<div class="modal" id="roomModal">
+<div class="modal-content">
+<h2>Add New Room</h2>
+<form>
+<label>Room Number</label><input type="text">
+<label>Type</label><select><option>Standard</option><option>Deluxe</option><option>Suite</option></select>
+<label>Price</label><input type="number">
+<label>Capacity</label><input type="number">
+<label>Description</label><textarea rows="4"></textarea>
+<button class="btn-primary" type="submit">Save Room</button>
+</form>
+</div>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/rooms.js"></script>
+</main>
+</body>
+</html>
