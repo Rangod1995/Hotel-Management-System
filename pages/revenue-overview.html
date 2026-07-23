@@ -900,6 +900,19 @@
                     }
                 }
             });
+
+            // Logout functionality
+            const revLogoutBtn = document.getElementById('logoutBtn');
+            if (revLogoutBtn) {
+                revLogoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('Logout?')) {
+                        localStorage.removeItem('hotelUser');
+                        sessionStorage.removeItem('hotelUser');
+                        window.location.href = '../index.html';
+                    }
+                });
+            }
         });
 
         console.log('Revenue Overview page loaded successfully!');

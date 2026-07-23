@@ -326,6 +326,21 @@ document.addEventListener('DOMContentLoaded', function() {
     checkSession();
 
     // ============================
+    // LOGOUT BUTTON
+    // ============================
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('hotelUser');
+                sessionStorage.removeItem('hotelUser');
+                window.location.href = '../index.html';
+            }
+        });
+    }
+
+    // ============================
     // AUTO-FILL DEMO CREDENTIALS
     // ============================
     // Credentials are pre-filled in the HTML for demo purposes

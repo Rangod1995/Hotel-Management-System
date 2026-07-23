@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if user is logged in
     if (!userData) {
         console.log('No user data - redirecting to login');
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
         return;
     }
     
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('User data cleared');
             
             // Redirect to login
-            window.location.href = 'index.html';
+            window.location.href = '../index.html';
         });
     } else {
         console.error('Logout button not found!');

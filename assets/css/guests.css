@@ -1,6 +1,10 @@
 /* guests.css */
 /* Guests Page Styles */
 
+body {
+    display: block;
+}
+
 .guest-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -12,7 +16,8 @@
     background: white;
     padding: 16px 20px;
     border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
 }
 
 .stat-label {
@@ -37,15 +42,16 @@
 
 .guest-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
 }
 
 .guest-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .guest-avatar {
@@ -132,7 +138,7 @@
     flex: 1;
     padding: 8px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);

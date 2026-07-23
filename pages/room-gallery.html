@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Suites · HotelManager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafcff;
+      color: #0b1a2e;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ----- NAVBAR ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b1a2e;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+
+    .logo a:hover {
+      transform: scale(1.02);
+    }
+
+    .logo i {
+      color: #1d4ed8;
+      font-size: 2rem;
+    }
+
+    .logo span {
+      font-weight: 300;
+      color: #475569;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: #1d4ed8;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25);
+      text-decoration: none;
+    }
+
+    .btn-primary i {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+      background: #1e3faf;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #d1d9e6;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1e293b;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #475569;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* ----- ROOM GALLERY ----- */
+    .room-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding-bottom: 60px;
+    }
+
+    .room-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px -8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #edf2f7;
+      transition: 0.25s ease;
+    }
+
+    .room-card:hover {
+      transform: translateY(-8px);
+      border-color: #dbeafe;
+      box-shadow: 0 24px 48px -16px rgba(29, 78, 216, 0.08);
+    }
+
+    .room-card .room-img {
+      height: 220px;
+      background: #d9e2ef;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .room-card .room-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .room-card:hover .room-img img {
+      transform: scale(1.05);
+    }
+
+    .room-card .room-body {
+      padding: 24px;
+    }
+
+    .room-card h4 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .room-card .room-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .room-card .room-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .room-card .room-price {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #0b1a2e;
+      margin-bottom: 16px;
+    }
+
+    .room-card .room-price small {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .room-card .room-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .room-card .amenity {
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .room-card .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      padding: 40px 0 24px;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #475569;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: #1d4ed8;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .room-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 0 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .room-gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../index.html">
+          <i class="fas fa-hotel"></i> Hotel<span>Manager</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html#features">Features</a></li>
+        <li><a href="../index.html#rooms">Rooms</a></li>
+        <li><a href="../index.html#testimonials">Testimonials</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-outline"><i class="fas fa-user-circle"></i> Sign in</a>
+        <a href="login.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book now</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Signature Suites</h1>
+      <p>Elegant spaces curated for the discerning traveller. Each room offers a unique view of the city skyline or serene gardens.</p>
+    </section>
+
+    <!-- ROOM GALLERY -->
+    <div class="room-gallery">
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&h=600&fit=crop" alt="Grand Deluxe Room" loading="lazy">
+        </div>
+        <div class="room-body">
+          <h4>Grand Deluxe</h4>
+          <div class="room-meta">
+            <span><i class="fas fa-bed"></i> King bed</span>
+            <span><i class="fas fa-vector-square"></i> 55 m&sup2;</span>
+          </div>
+          <div class="room-price">$289 <small>/ night</small></div>
+          <div class="room-amenities">
+            <span class="amenity"><i class="fas fa-wifi"></i> Wi-Fi</span>
+            <span class="amenity"><i class="fas fa-tv"></i> Smart TV</span>
+            <span class="amenity"><i class="fas fa-bath"></i> Spa Bath</span>
+          </div>
+          <a href="login.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Book this room</a>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&h=600&fit=crop" alt="Executive Suite" loading="lazy">
+        </div>
+        <div class="room-body">
+          <h4>Executive Suite</h4>
+          <div class="room-meta">
+            <span><i class="fas fa-bed"></i> Queen+</span>
+            <span><i class="fas fa-vector-square"></i> 72 m&sup2;</span>
+          </div>
+          <div class="room-price">$420 <small>/ night</small></div>
+          <div class="room-amenities">
+            <span class="amenity"><i class="fas fa-wifi"></i> Wi-Fi</span>
+            <span class="amenity"><i class="fas fa-tv"></i> Smart TV</span>
+            <span class="amenity"><i class="fas fa-glass-martini-alt"></i> Minibar</span>
+          </div>
+          <a href="login.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Book this room</a>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-img">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop" alt="Presidential Penthouse" loading="lazy">
+        </div>
+        <div class="room-body">
+          <h4>Presidential Penthouse</h4>
+          <div class="room-meta">
+            <span><i class="fas fa-bed"></i> Super King</span>
+            <span><i class="fas fa-vector-square"></i> 120 m&sup2;</span>
+          </div>
+          <div class="room-price">$790 <small>/ night</small></div>
+          <div class="room-amenities">
+            <span class="amenity"><i class="fas fa-wifi"></i> Wi-Fi</span>
+            <span class="amenity"><i class="fas fa-tv"></i> Home Theatre</span>
+            <span class="amenity"><i class="fas fa-hot-tub"></i> Private Jacuzzi</span>
+          </div>
+          <a href="login.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Book this room</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>&copy; 2026 HotelManager. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
