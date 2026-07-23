@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Hotel System</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Hotel Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required />
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Enter password" required />
+                        <button type="button" id="togglePassword" class="toggle-btn">Show</button>
+                    </div>
+                </div>
+                <div id="errorMessage" class="error"></div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="footer-links">
+                <a href="#" id="termsLink">Terms of Service</a>
+                <span>|</span>
+                <a href="#" id="privacyLink">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeTerms">&times;</span>
+            <h2>Terms of Service</h2>
+            <div class="modal-body">
+                <h3>1. Acceptance of Terms</h3>
+                <p>By using this Hotel Management System, you agree to these terms of service.</p>
+                
+                <h3>2. User Accounts</h3>
+                <p>You are responsible for maintaining the confidentiality of your account credentials.</p>
+                
+                <h3>3. Booking Policies</h3>
+                <p>All bookings are subject to availability and confirmation by the hotel.</p>
+                
+                <h3>4. Cancellation Policy</h3>
+                <p>Cancellations must be made at least 24 hours before check-in for a full refund.</p>
+                
+                <h3>5. Liability</h3>
+                <p>The hotel is not liable for any loss or damage to personal property.</p>
+                
+                <h3>6. Privacy</h3>
+                <p>Your personal information will be handled according to our Privacy Policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closePrivacy">&times;</span>
+            <h2>Privacy Policy</h2>
+            <div class="modal-body">
+                <h3>Information We Collect</h3>
+                <p>We collect personal information including name, email, phone number, and payment details.</p>
+                
+                <h3>How We Use Information</h3>
+                <p>We use your information to process bookings, provide customer service, and improve our services.</p>
+                
+                <h3>Data Security</h3>
+                <p>We implement security measures to protect your personal information.</p>
+                
+                <h3>Third-Party Sharing</h3>
+                <p>We do not sell or share your personal information with third parties without your consent.</p>
+                
+                <h3>Cookies</h3>
+                <p>We use cookies to enhance your experience on our website.</p>
+                
+                <h3>Your Rights</h3>
+                <p>You have the right to access, modify, or delete your personal information.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

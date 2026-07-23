@@ -1,0 +1,82 @@
+/* Calendar Page Styles */
+
+.calendar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.calendar-actions h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-900);
+    min-width: 180px;
+    text-align: center;
+}
+
+.calendar-container {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap:4px;
+    margin-bottom:8px;
+}
+
+.calendar-weekdays div{
+    text-align:center;
+    padding:8px;
+    font-weight:600;
+}
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:4px;
+}
+
+.calendar-day{
+    min-height:100px;
+    padding:8px;
+    border-radius:8px;
+    background:#f8fafc;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.calendar-day:hover{
+    background:#eef2ff;
+}
+
+.calendar-day.today{
+    border:2px solid #4F46E5;
+}
+
+.day-number{
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.day-event{
+    font-size:11px;
+    padding:2px 6px;
+    border-radius:4px;
+    margin-bottom:2px;
+}
+
+.day-event.booking{
+    background:#DBEAFE;
+}
+
+.day-event.check-in{
+    background:#D1FAE5;
+}
+
+.day-event.check-out{
+    background:#FEF3C7;
+}
