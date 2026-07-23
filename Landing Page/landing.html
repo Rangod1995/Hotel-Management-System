@@ -21,6 +21,18 @@
       background: #fafcff;
       color: #0b1a2e;
       line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
     }
 
     .container {
@@ -42,19 +54,22 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      transition: 0.2s ease;
-      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25);
+      transition: all 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.25), inset 0 1px 0 rgba(255,255,255,0.15);
       text-decoration: none;
-    }
-
-    .btn-primary i {
-      font-size: 1.1rem;
+      position: relative;
+      transform: translateY(0);
     }
 
     .btn-primary:hover {
       background: #1e3faf;
       transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.35);
+      box-shadow: 0 16px 32px rgba(29, 78, 216, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(29, 78, 216, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .btn-outline {
@@ -98,6 +113,27 @@
       font-weight: 700;
       letter-spacing: -0.5px;
       color: #0b1a2e;
+      transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      cursor: pointer;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
+    }
+
+    .logo i {
+      color: #1d4ed8;
+      font-size: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover i {
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    .logo span {
+      font-weight: 300;
+      color: #475569;
     }
 
     .logo a {

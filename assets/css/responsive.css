@@ -42,7 +42,8 @@
         box-shadow: var(--shadow-lg);
     }
 
-    .sidebar.open {
+    .sidebar.open,
+    .sidebar.show {
         transform: translateX(0);
     }
 

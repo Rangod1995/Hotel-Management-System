@@ -326,6 +326,63 @@ document.addEventListener('DOMContentLoaded', function() {
     checkSession();
 
     // ============================
+    // SIDEBAR TOGGLE (Dashboard Pages)
+    // ============================
+    const dashboardShell = document.querySelector('.dashboard-shell');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+
+    if (dashboardShell && sidebar && menuToggle) {
+        let overlay = document.getElementById('sidebarOverlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'sidebarOverlay';
+            overlay.className = 'sidebar-overlay';
+            document.body.appendChild(overlay);
+        }
+
+        function openSidebar() {
+            sidebar.classList.add('show');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (sidebar.classList.contains('show')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 992) {
+                if (sidebar.classList.contains('show') &&
+                    !sidebar.contains(e.target) &&
+                    e.target !== menuToggle &&
+                    !menuToggle.contains(e.target)) {
+                    closeSidebar();
+                }
+            }
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992) {
+                closeSidebar();
+            }
+        });
+    }
+
+    // ============================
     // LOGOUT BUTTON
     // ============================
     const logoutBtn = document.getElementById('logoutBtn');

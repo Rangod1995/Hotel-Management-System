@@ -6,11 +6,12 @@
 <title>Rooms | Hotel Management System</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/rooms.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/rooms.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
 <body>
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
   <div class="logo"><i class="fas fa-hotel"></i><span>HotelManager</span></div>
   <nav>
     <a href="dashboard.html"><i class="fas fa-chart-pie"></i>Dashboard</a>
@@ -23,6 +24,8 @@
   </nav>
 </aside>
 
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <main class="main-content">
 <header class="topbar">
 <div>
@@ -34,6 +37,9 @@
 <i class="fas fa-search"></i>
 <input id="searchRooms" placeholder="Search room...">
 </div>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+<i class="fas fa-bars"></i>
+</button>
 <button class="btn-primary"><i class="fas fa-plus"></i> Add Room</button>
 </div>
 </header>
@@ -98,6 +104,66 @@
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/utils.js"></script>
 <script src="../assets/js/rooms.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+
+    if (!sidebar || !menuToggle) return;
+
+    if (!overlay) {
+        const el = document.createElement('div');
+        el.id = 'sidebarOverlay';
+        el.className = 'sidebar-overlay';
+        document.body.appendChild(el);
+    }
+
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.add('show');
+        if (sidebarOverlay) sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('show');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (sidebar.classList.contains('show')) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
+
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 900) {
+            if (sidebar.classList.contains('show') &&
+                !sidebar.contains(e.target) &&
+                e.target !== menuToggle &&
+                !menuToggle.contains(e.target)) {
+                closeSidebar();
+            }
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900) {
+            closeSidebar();
+        }
+    });
+});
+</script>
 </main>
 </body>
 </html>
